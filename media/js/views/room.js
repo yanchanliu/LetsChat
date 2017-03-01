@@ -35,10 +35,10 @@
             this.messageTemplate =
                 Handlebars.compile($('#template-message').html());
             this.render();
-            this.model.on('messages:new', this.addMessage, this);
-            this.model.on('change', this.updateMeta, this);
-            this.model.on('remove', this.goodbye, this);
-            this.model.users.on('change', this.updateUser, this);
+            this.model.on('messages:new', this.addMessage.bind(this));
+            this.model.on('change', this.updateMeta.bind(this));
+            this.model.on('remove', this.goodbye.bind(this));
+            this.model.users.on('change', this.updateUser.bind(this));
 
             //
             // Subviews
@@ -59,12 +59,13 @@
             this.$messages = this.$('.lcb-messages');
             // Scroll Locking
             this.scrollLocked = true;
-            this.$messages.on('scroll',  _.bind(this.updateScrollLock, this));
+            this.$messages.on('scroll',  _.bind(this.updateScrollLock.bind(this)));
             this.atwhoMentions();
             this.atwhoAllMentions();
             this.atwhoRooms();
             this.atwhoEmotes();
             this.selectizeParticipants();
+            this.delegateEvents()
         },
         atwhoTplEval: function(tpl, map) {
             var error;
@@ -453,22 +454,22 @@
             this.template = Handlebars.compile($(this.templateSelector).html());
             this.collection.on('add remove', function() {
                 this.count();
-            }, this);
+            }.bind(this));
             this.collection.on('add', function(model) {
                 this.add(model.toJSON());
-            }, this);
+            }.bind(this));
             this.collection.on('change', function(model) {
                 this.update(model.toJSON());
-            }, this);
+            }.bind(this));
             this.collection.on('remove', function(model) {
                 this.remove(model.id);
-            }, this);
+            }.bind(this));
             this.render();
         },
         render: function() {
             this.collection.each(function(model) {
                 this.add(model.toJSON());
-            }, this);
+            }.bind(this));
             this.count();
         },
         add: function(model) {

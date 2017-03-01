@@ -24,16 +24,16 @@
                     return;
                 }
                 this.remove(room.id);
-            }, this);
+            }.bind(this))
             // Room meta updates
-            this.rooms.on('change:name change:description', this.update, this);
+            this.rooms.on('change:name change:description', this.update.bind(this))
             // Current room switching
             this.rooms.current.on('change:id', function(current, id) {
                 this.switch(id);
                 this.clearAlerts(id);
-            }, this);
+            }.bind(this))
             // Alerts
-            this.rooms.on('messages:new', this.alert, this);
+            this.rooms.on('messages:new', this.alert.bind(this))
             // Initial switch since router runs before view is loaded
             this.switch(this.rooms.current.get('id'));
             // Blur/Focus events
@@ -115,11 +115,11 @@
                     return;
                 }
                 this.remove(room.id);
-            }, this);
+            }.bind(this))
             // Switch room
             this.rooms.current.on('change:id', function(current, id) {
                 this.switch(id);
-            }, this);
+            }.bind(this))
             // Initial switch since router runs before view is loaded
             this.switch(this.rooms.current.get('id'));
         },

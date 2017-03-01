@@ -133,7 +133,7 @@
         this.joinRoom(room, undefined, true);
     };
     Client.prototype.lockJoin = function(id) {
-        if (_.contains(this.joining, id)) {
+        if (_.includes(this.joining, id)) {
             return false;
         }
 
@@ -236,7 +236,7 @@
             //
 
             var orooms = that.user.get('openRooms');
-            if ( ! _.contains(orooms,id)) {
+            if ( ! _.includes(orooms,id)) {
               orooms.push(id);
             }
             that.socket.emit('account:profile', {'openRooms': orooms });
@@ -290,7 +290,7 @@
                 message.historical = true;
             }
             this.addMessage(message);
-        }, this);
+        }.bind(this));
     };
     Client.prototype.sendMessage = function(message) {
         this.socket.emit('messages:create', message);
@@ -370,7 +370,7 @@
                 id: user.id
             });
             target && target.set(user);
-        }, this);
+        }.bind(this));
     };
     Client.prototype.getUsersSync = function() {
         if (this.users.length) {
@@ -455,7 +455,7 @@
             _.defer(function() {
                 //slow down because router can start a join with no password
                 _.each(openRooms, function(id) {
-                    if (_.contains(roomIds, id)) {
+                    if (_.includes(roomIds, id)) {
                         that.joinRoom({ id: id });
                     }
                 });

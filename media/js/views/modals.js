@@ -256,7 +256,7 @@
                 });
 
                 return $("<li>").append($img);
-            }, this);
+            }.bind(this));
 
             var $div = this.$el.find('.giphy-results ul');
 

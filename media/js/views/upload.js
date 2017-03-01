@@ -1,6 +1,5 @@
 /*
  * UPLOAD/FILE VIEWS
- * The king of all views.
  */
 
 'use strict';
@@ -18,10 +17,10 @@ Dropzone && (Dropzone.autoDiscover = false);
         initialize: function(options) {
             this.template = $('#template-upload').html();
             this.rooms = options.rooms;
-            this.rooms.current.on('change:id', this.setRoom, this);
-            this.rooms.on('add remove', this.populateRooms, this);
-            this.rooms.on('change:joined', this.populateRooms, this);
-            this.rooms.on('upload:show', this.show, this);
+            this.rooms.current.on('change:id', this.setRoom.bind(this))
+            this.rooms.on('add remove', this.populateRooms.bind(this))
+            this.rooms.on('change:joined', this.populateRooms.bind(this))
+            this.rooms.on('upload:show', this.show.bind(this))
             this.render();
         },
         render: function() {
@@ -103,7 +102,7 @@ Dropzone && (Dropzone.autoDiscover = false);
                         name: room.get('name')
                     });
                 }
-            }, this);
+            }.bind(this));
         }
     });
 

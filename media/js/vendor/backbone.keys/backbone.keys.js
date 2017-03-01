@@ -109,7 +109,7 @@
             if (keys) {
                 _.each(keys, function(method, key) {
                     this.keyOn(key, method);
-                }, this);
+                }.bind(this));
                 // Bind to DOM element in order to forward key events
                 var bindTo = (this.bindKeysScoped || typeof $ === "undefined") ? this.$el : $(document);
                 bindTo.on(this.bindKeysOn, _.bind(this.triggerKey, this));
@@ -141,7 +141,7 @@
             _(this._keyEventBindings[key]).each(function(listener) {
                 var trigger = true;
                 if (listener.modifiers) {
-                    trigger = _(listener.modifiers).all(function(modifier) {
+                    trigger = _(listener.modifiers).every(function(modifier) {
                         return e[modifier + 'Key'] === true;
                     });
                 }

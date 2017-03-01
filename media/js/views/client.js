@@ -87,7 +87,7 @@
             //
             this.client.status.once('change:connected', _.bind(function(status, connected) {
                 this.$el.find('.lcb-client-loading').hide(connected);
-            }, this));
+            }.bind(this)));
             return this;
         },
         toggleSideBar: function(e) {
@@ -97,7 +97,7 @@
 
     window.LCB.AccountButtonView = Backbone.View.extend({
         initialize: function() {
-            this.model.on('change', this.update, this);
+            this.model.on('change', this.update.bind(this));
         },
         update: function(user){
             this.$('.lcb-account-button-username').text('@' + user.get('username'));
