@@ -42,7 +42,7 @@
     "radix": 2,
     "space-infix-ops": 2,
     "vars-on-top": 2,
-    "wrap-iife": 2,
+    "wrap-iife": 1,
     "yoda": 2,
 
     "brace-style": [2, "1tbs", {"allowSingleLine": true}],
@@ -59,17 +59,11 @@
     "semi": [2, "always"],
     "strict": [2, "never"],
 
-    "babel/generator-star-spacing": ["error", {"before": false, "after": true}],
-
-    "babel/object-shorthand": 1,
-    "babel/no-await-in-loop": 1,
-
     "prefer-object-spread/prefer-object-spread": 2,
     "no-constant-condition": 0,
     "object-curly-spacing": [2, "always"]
   },
   "plugins": [
-    "babel",
     "prefer-object-spread"
   ]
 }

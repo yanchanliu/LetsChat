@@ -5,6 +5,10 @@ import Blankie from 'blankie';
 import Scooter from 'scooter';
 
 import Core from '../core';
+import Client from '../../client';
+
+import indexRoute from './routes/index';
+
 
 export default class Server {
 
@@ -12,7 +16,7 @@ export default class Server {
 
     this.core = new Core();
 
-    this.server =  new Hapi.Server();
+    this.server = new Hapi.Server();
 
     this.server.connection({
       port: 5000
@@ -26,10 +30,13 @@ export default class Server {
 
     await server.register([
       Scooter,
-      {
-        register: Blankie,
-        options: {}
-      }
+      Blankie
+    ]);
+
+    await Client.attach(server);
+
+    server.route([
+      indexRoute
     ]);
 
     await core.start();

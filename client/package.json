@@ -3,5 +3,22 @@
   "version": "1.0.0-alpha",
   "main": "index.js",
   "author": "Houssam Haidar",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "hapi-react-views": "^9.2.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "vision": "^4.1.1"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.0",
+    "babel-loader": "^6.4.0",
+    "babel-preset-react": "^6.23.0",
+    "happypack": "^3.0.3",
+    "node-sass": "^4.5.0",
+    "sass-loader": "^6.0.3",
+    "webpack": "^2.2.1",
+    "webpack-bundle-tracker": "^0.2.0",
+    "webpack-hot-middleware": "^2.17.1"
+  }
 }
