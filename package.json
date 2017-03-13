@@ -1,0 +1,25 @@
+{
+  "name": "lets-chat",
+  "version": "1.0.0-alpha",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node .",
+    "watch": "pm2 start . --watch --no-daemon",
+    "lint": "eslint --ext .js --ext .jsx src"
+  },
+  "author": "Houssam Haidar",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-preset-env": "^1.2.1",
+    "babel-register": "^6.23.0",
+    "pm2": "^2.4.2"
+  },
+  "dependencies": {
+    "blankie": "^2.0.0",
+    "debug": "^2.6.2",
+    "hapi": "^16.1.0",
+    "lets-chat-client": "file:client",
+    "scooter": "^4.0.0"
+  }
+}
